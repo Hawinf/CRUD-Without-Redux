@@ -1,0 +1,19 @@
+.regis-wrapper{
+    max-width: 300px;
+    margin: 0 auto;
+}
+.regis-container {
+    display: flex;
+    flex-direction: column;
+}
+.regis-container h1 {
+    text-align: center;
+}
+.regis-container input {
+    padding: 8px;
+    margin-bottom: 8px;
+}
+.regis-container button {
+    padding: 8px;
+    margin-top: 16px;
+}

@@ -1,0 +1,19 @@
+.login-wrapper{
+    max-width: 300px;
+    margin: 0 auto;
+}
+.login-container {
+    display: flex;
+    flex-direction: column;
+}
+.login-container h1 {
+    text-align: center;
+}
+.login-container input {
+    padding: 8px;
+    margin-bottom: 8px;
+}
+.login-container button {
+    padding: 8px;
+    margin-top: 16px;
+}

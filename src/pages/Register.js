@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react'
 import { API } from '../const/endpoint'
+import Navbar from '../component/navbar/navbar';
 import './register.css'
 
 
@@ -32,6 +33,7 @@ const Register = () => {
 
   return (
     <div>
+        <Navbar />
         <div className='regis-wrapper'>
             <div className='regis-container'>
                 <h1>Register Admin</h1>

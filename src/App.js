@@ -4,6 +4,8 @@ import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Discovery from './pages/Discovery';
+import ProtectedRoute from './hoc/ProtectedRoute';
+import ProtectedRoutes from './hoc/ProtectedRouters';
 
 function App() {
   
@@ -13,7 +15,10 @@ function App() {
           <Route path='/' element={<Homepage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='discover' element={<Discovery />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path='discover' element={<Discovery />} />
+          </Route>
+          
       </Routes>
    </BrowserRouter>
   );

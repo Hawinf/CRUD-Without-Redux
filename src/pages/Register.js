@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react'
 import { API } from '../const/endpoint'
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../component/navbar/navbar';
 import './register.css'
 
@@ -8,6 +9,7 @@ import './register.css'
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const inputEmail = (e) => {
         setEmail(e.target.value);
@@ -26,7 +28,10 @@ const Register = () => {
 
         axios
             .post(API.REGISTER, payload)
-            .then((res) => console.log(res))
+            .then((res) => {
+                
+                navigate('/login')
+            })
             .catch((err) => console.log(err.message))
 
     }

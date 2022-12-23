@@ -12,6 +12,10 @@ const Discovery = () => {
   
 
   useEffect(() => {
+    getData();
+  },[])
+
+  const getData = () => {
     const token = localStorage.getItem('token')
 
     const configurasi = {
@@ -27,7 +31,26 @@ const Discovery = () => {
         setCars(res.data.cars)
       })
       .catch((err) => console.log(err.message))
-  },[])
+  };
+
+  const handleDelete = (id) => {
+    const token = localStorage.getItem('token');
+
+    const config = {
+        headers: {
+            access_token: token,
+        },
+    };
+
+    axios
+      .delete(`https://bootcamp-rent-cars.herokuapp.com/admin/car/${id}`, config)
+      .then((res) => {
+        getData()
+        console.log(res, 'file success delete')
+      })
+      .catch((err) => console.log(err, 'erorr delete file'))
+  };
+
 
   return (
     <div className='wrapper-discovery'>
@@ -48,6 +71,12 @@ const Discovery = () => {
                 <h1>{item.name}</h1>
                 <h2>{item.price}</h2>
                 <p>{item.category}</p>
+                <button onClick={()=>handleDelete(item.id)}>delete</button>
+                <button>
+                  <Link to={`/edit/${item.id}`}>
+                    Edit
+                  </Link>
+                </button>
               </div>
             ))
           )

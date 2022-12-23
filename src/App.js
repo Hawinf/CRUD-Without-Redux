@@ -7,6 +7,7 @@ import Discovery from './pages/Discovery';
 import ProtectedRoute from './hoc/ProtectedRoute';
 import ProtectedRoutes from './hoc/ProtectedRouters';
 import NewCarPage from './pages/NewCarPage';
+import EditPage from './pages/editPage';
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path='/discover' element={<Discovery />} />
             <Route path='/new-car' element={<NewCarPage />} />
+            <Route path='/edit/:id' element={<EditPage />} /> 
           </Route>
           
       </Routes>

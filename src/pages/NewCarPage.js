@@ -1,12 +1,14 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { API } from '../const/endpoint'
 
 const NewCarPage = () => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [image, setImage] = useState(null)
     const [category, setCategory] = useState('')
+    const navigate = useNavigate();
 
     const handleName = (e) => {
         setName(e.target.value);
@@ -15,8 +17,8 @@ const NewCarPage = () => {
         setPrice(e.target.value);
     }
     const handleImage = (e) => {
-        console.log(e.target.files[0])
         setImage(e.target.files[0]);
+        console.log(e.target.files[0])
     }
     const handleCategory = (e) => {
         setCategory(e.target.value)
@@ -24,10 +26,27 @@ const NewCarPage = () => {
 
 
     const handleCreate = () => {
-        let formData = new FormData();
+        const token = localStorage.getItem('token');
+
+        const config = {
+            headers: {
+                access_token: token,
+            },
+        };
+
+        const formData = new FormData();
+        formData.append('image', image);
+        formData.append('name', name);
+        formData.append('category', category);
+        formData.append('price', price);
+        formData.append('status', false);
 
         axios
-            .post('', '')
+            .post(API.POST_CARS, formData, config)
+            .then((res) => {
+                navigate('/discover')
+            })
+            .catch((err) => console.log(err));
     }
 
     console.log(name, price, category, image)
